@@ -1,15 +1,33 @@
 {
-  "name": "test_docker",
-  "version": "1.0.0",
-  "description": "En esta carpeta, la idea es usar los devcontainers de vscode para poderle agregar cosas\r Actualmente lo que sé hacer es tomar los devcontainer files que ellos otorgan e instalar cosas manualmente\r la idea es generar un archivo dockerfile que ya venga con las configuraciones de microsoft y que aparte tenga los paquetes que yo necesite\r por ejemplo:",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "name": "app",
+  "description": "Template for setting up a TypeScript monorepo",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ],
+    "nohoist": [
+      "**/react*",
+      "**/eslint*",
+      "**/react-dom"
+    ]
   },
-  "keywords": [],
-  "author": "Christian Eduardo Amaya Rivas",
-  "license": "ISC",
-  "dependencies": {
-    "express": "^4.17.2"
+  "scripts": {
+    "dev": "lerna run dev --stream",
+    "clean": "lerna run clean --stream",
+    "build": "lerna run build --stream",
+    "docs": "doctoc --title '**Table of content**' README.md",
+    "pub": "lerna publish",
+    "test": "lerna run test --stream",
+    "test:watch": "lerna run --parallel test:watch",
+    "reset": "npx rimraf ./**/node_modules yarn.lock"
+  },
+  "devDependencies": {
+    "doctoc": "~2.1.0",
+    "eslint": "^8.14.0",
+    "eslint-plugin-react-hooks": "^4.5.0",
+    "lerna": "~4.0.0",
+    "react": "~17.0.0",
+    "typescript": "~4.5.0"
   }
 }

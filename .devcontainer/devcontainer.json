@@ -1,10 +1,16 @@
 {
-  "name": "Node.js & Mongo DB",
-  "dockerComposeFile": "docker-compose.yml",
-  "service": "app",
+  "name": "app",
+  "build": {
+		"dockerfile": "Dockerfile",
+		// Update 'VARIANT' to pick a Node version: 16, 14, 12.
+		// Append -bullseye or -buster to pin to an OS version.
+		// Use -bullseye variants on local arm64/Apple Silicon.
+		"args": { "VARIANT": "16-bullseye" }
+	},
   "workspaceFolder": "/workspace",
   "settings": {},
-  "extensions": ["dbaeumer.vscode-eslint", "mongodb.mongodb-vscode"],
+  "extensions": ["dbaeumer.vscode-eslint", "GitHub.copilot", "esbenp.prettier-vscode", "dsznajder.es7-react-js-snippets"],
   "forwardPorts": [3000, 27017],
-  "postCreateCommand": "yarn install"
+  "postCreateCommand": "yarn",
+  "remoteUser": "node"
 }
